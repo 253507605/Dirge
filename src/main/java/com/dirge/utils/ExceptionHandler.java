@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 全局异常处理器
+ * 1.全局异常处理器
+ * 2.全局数据绑定
  */
 @ControllerAdvice
 @ResponseBody
