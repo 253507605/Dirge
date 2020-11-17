@@ -1,6 +1,9 @@
 package com.dirge.test;
 
-import java.util.Arrays;
+import com.sun.applet2.AppletParameters;
+
+import javax.sound.midi.Soundbank;
+import java.util.*;
 
 /**
  * 这里是力扣的类型简单的题目
@@ -27,13 +30,15 @@ public class LeetCode_Easy {
         int[] nums2 = {2,5,6};
         exam_88(nums1,3,nums2,3);*/
         //100
-        TreeNode treeNodeLeft1 = new TreeNode(2);
+        /*TreeNode treeNodeLeft1 = new TreeNode(2);
         TreeNode treeNodeRight1 = new TreeNode(3);
         TreeNode treeNode1 = new TreeNode(1, treeNodeLeft1, treeNodeRight1);
         TreeNode treeNodeLeft2 = new TreeNode(2);
         TreeNode treeNodeRight2 = new TreeNode(3);
         TreeNode treeNode2 = new TreeNode(1, treeNodeLeft2, treeNodeRight2);
-        System.out.println(exam_100(treeNode1, treeNode2));
+        System.out.println(exam_100(treeNode1, treeNode2));*/
+        //1030
+        exam_1030(2,3,1,2);
     }
 
     /**
@@ -185,5 +190,32 @@ public class LeetCode_Easy {
             }
         }
         return B;
+    }
+
+    /**
+     * 给出 R 行 C 列的矩阵，其中的单元格的整数坐标为 (r, c)，满足 0 <= r < R 且 0 <= c < C。
+     *
+     * 另外，我们在该矩阵中给出了一个坐标为 (r0, c0) 的单元格。
+     *
+     * 返回矩阵中的所有单元格的坐标，并按到 (r0, c0) 的距离从最小到最大的顺序排，其中，两单元格(r1, c1) 和 (r2, c2) 之间的距离是曼哈顿距离，|r1 - r2| + |c1 - c2|
+     *
+     * 输入：R = 2, C = 3, r0 = 1, c0 = 2
+     * 输出：[[1,2],[0,2],[1,1],[0,1],[1,0],[0,0]]
+     * 解释：从 (r0, c0) 到其他单元格的距离为：[0,1,1,2,2,3]
+     * 其他满足题目要求的答案也会被视为正确，例如 [[1,2],[1,1],[0,2],[1,0],[0,1],[0,0]]。
+     *
+     */
+    public static int[][] exam_1030(int R, int C, int r0, int c0){
+        int[][] ints = new int[1][R*C];
+        HashMap<Integer, Map<Integer,Integer>> map = new HashMap<>();
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                int abs = Math.abs(i-r0)+Math.abs(j-c0);
+                HashMap<Integer,Integer> hashMap = new HashMap<>();
+                hashMap.put(i,j);
+                map.put(abs,hashMap);
+            }
+        }
+        return null;
     }
 }
