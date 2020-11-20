@@ -1,6 +1,5 @@
 package com.dirge.test;
 
-import com.sun.applet2.AppletParameters;
 
 import javax.sound.midi.Soundbank;
 import java.util.*;

@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserInterceptor implements HandlerInterceptor {
 
-    @Override
+    /*@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
         System.out.println("你好，我是陈嘉龙");
         return true;
-    }
+    }*/
 }

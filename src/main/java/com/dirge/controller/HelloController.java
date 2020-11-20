@@ -59,7 +59,7 @@ public class HelloController {
     @PostMapping("/add")
     public String addUser(User user,HttpServletRequest request){
         System.out.println(user.getId());
-        System.out.println(user.getName());
+        System.out.println(user.getUserName());
         //userMapper.insertSelective(user);
         Condition condition = new Condition(User.class);
         condition.createCriteria().andEqualTo("id",1);
@@ -71,6 +71,7 @@ public class HelloController {
     @PostMapping("/sendMail")
     public String sendMail(){
         sendEmail.sendSimpleMail(sender,"1055856220@qq.com","springboot发送邮件","你好，这是我测试的发送邮件");
+        System.out.println("nihao");
         return "success";
     }
 }

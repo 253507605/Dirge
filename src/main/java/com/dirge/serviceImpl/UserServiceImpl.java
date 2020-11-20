@@ -5,6 +5,8 @@ import com.dirge.mapper.UserMapper;
 import com.dirge.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Condition;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -12,9 +14,15 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+
     @Override
-    public User getUser(Integer id) {
-        User user = userMapper.getUser(1);
+    public User getUser(String userName, String passWord) {
+        User user = userMapper.getUser(userName,passWord);
         return user;
+    }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.insertSelective(user);
     }
 }
