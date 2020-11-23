@@ -42,7 +42,11 @@ public class LoginController {
     public String regist(User user){
         String id = UUID.randomUUID().toString();
         user.setId(id);
-        userService.addUser(user);
-        return "success";
+        boolean flag = userService.addUser(user);
+        if(flag){
+            return "success";
+        } else {
+            return "用户名已经被占用，请重新注册！！！";
+        }
     }
 }

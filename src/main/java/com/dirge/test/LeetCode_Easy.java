@@ -36,8 +36,23 @@ public class LeetCode_Easy {
         TreeNode treeNodeRight2 = new TreeNode(3);
         TreeNode treeNode2 = new TreeNode(1, treeNodeLeft2, treeNodeRight2);
         System.out.println(exam_100(treeNode1, treeNode2));*/
+        //101
+        TreeNode treeNode = new TreeNode(1);
+        TreeNode treeNode1 = new TreeNode(2);
+        TreeNode treeNode2 = new TreeNode(2);
+        treeNode.left = treeNode1;
+        treeNode.right=treeNode2;
+        TreeNode treeNode3 = null;
+        TreeNode treeNode4 = new TreeNode(3);
+        TreeNode treeNode5 = null;
+        TreeNode treeNode6 = new TreeNode(3);
+        treeNode1.left = treeNode3;
+        treeNode1.right = treeNode4;
+        treeNode2.left = treeNode5;
+        treeNode2.right = treeNode6;
+        System.out.println(exam_101(treeNode));
         //1030
-        exam_1030(2,3,1,2);
+        //exam_1030(2,3,1,2);
     }
 
     /**
@@ -156,6 +171,22 @@ public class LeetCode_Easy {
         }
 
         return left && right;
+    }
+
+    /**
+     * 给定两个二叉树，编写一个函数来检验它们是否相同。
+     * <p>
+     * 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+     * 输入:       1         1
+     *           / \       / \
+     *         2   3     2   3
+     * <p>
+     * [1,2,3],   [1,2,3]
+     * <p>
+     * 输出: true
+     */
+    public static boolean exam_101(TreeNode p){
+        return false;
     }
 
     /**
