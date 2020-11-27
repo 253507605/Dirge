@@ -6,4 +6,6 @@ public interface UserService {
     User getUser(String userName ,String passWord);
 
     boolean addUser(User user);
+
+    User getUserByUserName(String userName);
 }

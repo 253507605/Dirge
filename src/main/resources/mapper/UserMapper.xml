@@ -5,8 +5,14 @@
         <id property="id" column="id"/>
         <result property="userName" column="user_name"/>
         <result property="passWord" column="pass_word"/>
+        <result property="role" column="role"/>
+        <result property="permission" column="permission"/>
     </resultMap>
     <select id="getUser" resultMap="user">
         select * from user where user_name = #{userName} and pass_word = #{passWord}
+    </select>
+
+    <select id="getUserByUserName" resultMap="user">
+        select * from user where user_name = #{userName}
     </select>
 </mapper>
