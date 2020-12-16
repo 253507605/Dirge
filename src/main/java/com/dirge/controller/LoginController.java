@@ -3,12 +3,14 @@ package com.dirge.controller;
 import com.dirge.entity.PO.PermissionCode;
 import com.dirge.entity.User;
 import com.dirge.service.UserService;
+import com.dirge.utils.MqSender;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,9 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MqSender mqSender;
 
     @PostMapping("/login")
     public String doLogin(User user){
@@ -63,5 +68,11 @@ public class LoginController {
         } else {
             return "用户名已经被占用，请重新注册！！！";
         }
+    }
+
+    @GetMapping("/sendMq")
+    public String sendMq(){
+        mqSender.send();
+        return "success";
     }
 }

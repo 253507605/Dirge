@@ -33,6 +33,7 @@ public class ShiroConfig {
         DefaultShiroFilterChainDefinition definition =new DefaultShiroFilterChainDefinition();
         definition.addPathDefinition("/login","anon");
         definition.addPathDefinition("/regist","anon");
+        definition.addPathDefinition("/sendMq","anon");
         definition.addPathDefinition("/**","authc");
         //definition.addPathDefinition("/index","user");
         return definition;
