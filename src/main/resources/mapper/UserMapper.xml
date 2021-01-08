@@ -2,11 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dirge.mapper.UserMapper">
     <resultMap id="user" type="com.dirge.entity.User">
-        <id property="id" column="id"/>
-        <result property="userName" column="user_name"/>
-        <result property="passWord" column="pass_word"/>
-        <result property="role" column="role"/>
-        <result property="permission" column="permission"/>
+        <id property="id" jdbcType="VARCHAR" column="id"/>
+        <result property="userName" jdbcType="VARCHAR" column="user_name"/>
+        <result property="passWord" jdbcType="VARCHAR" column="pass_word"/>
+        <result property="email" jdbcType="VARCHAR" column="email"/>
+        <result property="role" jdbcType="VARCHAR" column="role"/>
+        <result property="permission" jdbcType="VARCHAR" column="permission"/>
+        <result property="createDate" jdbcType="TIMESTAMP" column="create_date"/>
+        <result property="updateDate" jdbcType="TIMESTAMP" column="update_date"/>
     </resultMap>
     <select id="getUser" resultMap="user">
         select * from user where user_name = #{userName} and pass_word = #{passWord}

@@ -1,3 +1,4 @@
+/*
 package com.dirge.utils;
 
 import com.dirge.config.RabbitConfig;
@@ -21,3 +22,4 @@ public class MqReceiver {
         logger.info("处理器two处理B队列："+content);
     }
 }
+*/

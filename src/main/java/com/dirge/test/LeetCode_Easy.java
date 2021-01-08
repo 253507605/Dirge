@@ -9,50 +9,15 @@ import java.util.*;
  */
 public class LeetCode_Easy {
     public static void main(String[] args) {
-        //69
-        //System.out.println(exam_69(2147395599));
-        //70
-        //System.out.println(exam_70(45));
-        //83
-        /*ListNode listNode = new ListNode(1);
-        ListNode listNode1 = new ListNode(1);
-        ListNode listNode2 = new ListNode(2);
-        ListNode listNode3 = new ListNode(3);
-        ListNode listNode4 = new ListNode(3);
-        listNode.next=listNode1;
-        listNode1.next=listNode2;
-        listNode2.next=listNode3;
-        listNode3.next=listNode4;
-        System.out.println(exam_83(listNode));*/
-        //88
-        /*int[] nums1 = {1,2,3};
-        int[] nums2 = {2,5,6};
-        exam_88(nums1,3,nums2,3);*/
-        //100
-        /*TreeNode treeNodeLeft1 = new TreeNode(2);
-        TreeNode treeNodeRight1 = new TreeNode(3);
-        TreeNode treeNode1 = new TreeNode(1, treeNodeLeft1, treeNodeRight1);
-        TreeNode treeNodeLeft2 = new TreeNode(2);
-        TreeNode treeNodeRight2 = new TreeNode(3);
-        TreeNode treeNode2 = new TreeNode(1, treeNodeLeft2, treeNodeRight2);
-        System.out.println(exam_100(treeNode1, treeNode2));*/
-        //101
-        TreeNode treeNode = new TreeNode(1);
-        TreeNode treeNode1 = new TreeNode(2);
-        TreeNode treeNode2 = new TreeNode(2);
-        treeNode.left = treeNode1;
-        treeNode.right=treeNode2;
-        TreeNode treeNode3 = null;
-        TreeNode treeNode4 = new TreeNode(3);
-        TreeNode treeNode5 = null;
-        TreeNode treeNode6 = new TreeNode(3);
-        treeNode1.left = treeNode3;
-        treeNode1.right = treeNode4;
-        treeNode2.left = treeNode5;
-        treeNode2.right = treeNode6;
-        System.out.println(exam_101(treeNode));
-        //1030
-        //exam_1030(2,3,1,2);
+        int[] stones = {2,2};
+        System.out.println(exam_1046(stones));
+    }
+
+    /**
+     *
+     */
+    public static int exam_13(String s){
+        return 0;
     }
 
     /**
@@ -174,20 +139,68 @@ public class LeetCode_Easy {
     }
 
     /**
-     * 给定两个二叉树，编写一个函数来检验它们是否相同。
+     * 检查它是否是镜像对称的。
      * <p>
-     * 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
-     * 输入:       1         1
-     *           / \       / \
-     *         2   3     2   3
-     * <p>
-     * [1,2,3],   [1,2,3]
-     * <p>
+     * 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+     * 输入:        1
+     *            / \
+     *           2   2
+     *          / \ / \
+     *         3  4 4  3
      * 输出: true
      */
     public static boolean exam_101(TreeNode p){
-        return false;
+        if (p == null) {
+            return true;
+        }
+        return exam_101_1(p.left,p.right);
     }
+
+    public static boolean exam_101_1(TreeNode left,TreeNode right){
+        if(left == null && right == null){
+            return true;
+        }
+        if(left == null || right == null || left.val != right.val){
+            return false;
+        }
+        return  exam_101_1(left.left,right.right) && exam_101_1(left.right,right.left);
+    }
+
+    /**
+     * 给定一个二叉树，找出其最大深度。
+     * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+     * 说明: 叶子节点是指没有子节点的节点。
+     *
+     * 给定二叉树 [3,9,20,null,null,15,7]，
+     * 返回3
+     */
+    public static int exam_104(TreeNode root){
+        return root == null ? 0 : Math.max(exam_104(root.left), exam_104(root.right)) + 1;
+    }
+
+    /**
+     * 给定一个二叉树，返回其节点值自底向上的层序遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+     *
+     * 例如：
+     * 给定二叉树 [3,9,20,null,null,15,7]
+     *     3
+     *    / \
+     *   9  20
+     *     /  \
+     *    15   7
+     * 返回其自底向上的层序遍历为：
+     *
+     * [
+     *   [15,7],
+     *   [9,20],
+     *   [3]
+     * ]
+     */
+    public static List<List<Integer>> exam_107(TreeNode root){
+
+        return null;
+    }
+
 
     /**
      * 假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。
@@ -275,5 +288,46 @@ public class LeetCode_Easy {
             }
         }
         return null;
+    }
+
+    /**
+     * 每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。假设石头的重量分别为 x 和 y，且 x <= y。那么粉碎的可能结果如下：
+     *
+     * 如果 x == y，那么两块石头都会被完全粉碎；
+     * 如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。
+     * 最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。
+     *
+     * 输入：[2,7,4,1,8,1]
+     * 输出：1
+     * 解释：
+     * 先选出 7 和 8，得到 1，所以数组转换为 [2,4,1,1,1]，
+     * 再选出 2 和 4，得到 2，所以数组转换为 [2,1,1,1]，
+     * 接着是 2 和 1，得到 1，所以数组转换为 [1,1,1]，
+     * 最后选出 1 和 1，得到 0，最终数组转换为 [1]，这就是最后剩下那块石头的重量。
+     *
+     */
+    public static int exam_1046(int[] stones){
+        List<Integer> list = new ArrayList<>();
+        for(int i=0;i<stones.length;i++){
+            list.add(stones[i]);
+        }
+        while (list.size()>1){
+            Collections.sort(list);
+            int a = list.get(list.size()-1);
+            int b = list.get(list.size()-2);
+            if(a==b){
+                list.remove(list.size()-1);
+                list.remove(list.size()-1);
+            } else {
+                list.remove(list.size()-1);
+                list.remove(list.size()-1);
+                list.add(a-b);
+            }
+        }
+        if(list.size()==0){
+            return 0;
+        }else {
+            return list.get(0);
+        }
     }
 }

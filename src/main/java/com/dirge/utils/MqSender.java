@@ -1,3 +1,4 @@
+/*
 package com.dirge.utils;
 
 import com.dirge.config.RabbitConfig;
@@ -16,3 +17,4 @@ public class MqSender {
         rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE_A,RabbitConfig.ROUTINGKEY_B,"mq发送测试B");
     }
 }
+*/

@@ -49,7 +49,7 @@ public class HelloController {
     public String sayHello(HttpServletRequest request){
         //User user = userService.getUser(1);
         System.out.println(user.getId());
-        System.out.println(music.getName());
+        System.out.println(music.getMusicName());
         helloService.say();
         //redisTemplate.opsForValue().set("ids","cjl");
         System.out.println(redisTemplate.opsForValue().get("ids"));

@@ -1,3 +1,4 @@
+/*
 package com.dirge.config;
 
 import org.slf4j.Logger;
@@ -83,3 +84,4 @@ public class RabbitConfig {
         return BindingBuilder.bind(queuB()).to(directExchange()).with(RabbitConfig.ROUTINGKEY_B);
     }
 }
+*/

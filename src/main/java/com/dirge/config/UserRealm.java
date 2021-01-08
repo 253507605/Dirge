@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import tk.mybatis.mapper.entity.Condition;
 
 public class UserRealm extends AuthorizingRealm {
 
@@ -34,7 +33,6 @@ public class UserRealm extends AuthorizingRealm {
         User user = userService.getUserByUserName(username);
         authorizationInfo.addRole(user.getRole());
         authorizationInfo.addStringPermission(user.getPermission());
-        System.out.println(authorizationInfo.getStringPermissions().size());
         return authorizationInfo;
     }
 
