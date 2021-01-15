@@ -9,8 +9,16 @@ import java.util.*;
  */
 public class LeetCode_Easy {
     public static void main(String[] args) {
-        int[] stones = {2,2};
-        System.out.println(exam_1046(stones));
+        TreeNode treeNode = new TreeNode(3);
+        TreeNode treeNode1 = new TreeNode(9);
+        TreeNode treeNode2 = new TreeNode(20);
+        TreeNode treeNode3 = new TreeNode(15);
+        TreeNode treeNode4 = new TreeNode(7);
+        treeNode.left = treeNode1;
+        treeNode.right = treeNode2;
+        treeNode2.left = treeNode3;
+        treeNode2.right = treeNode4;
+        exam_107(treeNode);
     }
 
     /**
@@ -197,8 +205,47 @@ public class LeetCode_Easy {
      * ]
      */
     public static List<List<Integer>> exam_107(TreeNode root){
+        List<List<Integer>> list = new ArrayList<>();
+        if(root == null){
+            return list;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()){
+            List<Integer> list1 = new ArrayList<>();
+            int size = queue.size();
+            for(int i=0;i<size;i++){
+                TreeNode node = queue.poll();
+                list1.add(node.val);
+                if(node.left!=null){
+                    queue.offer(node.left);
+                }
+                if(node.right!=null){
+                    queue.offer(node.right);
+                }
+            }
+            list.add(0,list1);
+        }
+        return list;
+    }
 
-        return null;
+
+    /**
+     * 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。
+     * 给定有序数组: [-10,-3,0,5,9],
+     *
+     * 一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：
+     *
+     *       0
+     *      / \
+     *    -3   9
+     *    /   /
+     *  -10  5
+     * @return
+     */
+    public static TreeNode exam_108(int[] nums){
+        TreeNode treeNode = new TreeNode();
+        return treeNode;
     }
 
 
