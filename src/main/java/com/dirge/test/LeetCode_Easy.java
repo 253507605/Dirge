@@ -9,23 +9,57 @@ import java.util.*;
  */
 public class LeetCode_Easy {
     public static void main(String[] args) {
-        TreeNode treeNode = new TreeNode(3);
-        TreeNode treeNode1 = new TreeNode(9);
-        TreeNode treeNode2 = new TreeNode(20);
-        TreeNode treeNode3 = new TreeNode(15);
-        TreeNode treeNode4 = new TreeNode(7);
-        treeNode.left = treeNode1;
-        treeNode.right = treeNode2;
-        treeNode2.left = treeNode3;
-        treeNode2.right = treeNode4;
-        exam_107(treeNode);
+
+    }
+
+    /**
+     * 输入: "MCMXCIV"
+     * 输出: 1994
+     * 解释: M = 1000, CM = 900, XC = 90, IV = 4.
+     */
+    public static int exam_13(String s){
+        Map<String,Integer> map = new HashMap<>();
+        map.put("I",1);
+        map.put("V",5);
+        map.put("X",10);
+        map.put("L",50);
+        map.put("C",100);
+        map.put("D",500);
+        map.put("M",1000);
+        int sum = 0;
+        for(int i=0;i<s.length();i++){
+            String a1 = s.substring(i,i+1);
+            String a2 = null;
+            if(i!=s.length()-1){
+                a2 = s.substring(i+1,i+2);
+            }
+            if(map.get(a2)!=null && map.get(a1)<map.get(a2)){
+                sum+=map.get(a2)-map.get(a1);
+                i++;
+            }else {
+                sum+=map.get(a1);
+            }
+        }
+        return sum;
     }
 
     /**
      *
+     * 给定一个只包括 '('，')'，'{'，'}'，'['，']'的字符串 s ，判断字符串是否有效。
+     *
+     * 有效字符串需满足：
+     * 左括号必须用相同类型的右括号闭合。
+     * 左括号必须以正确的顺序闭合。
+     *
+     * 输入：s = "{[]}"
+     * 输出：true
      */
-    public static int exam_13(String s){
-        return 0;
+    public static boolean exam_20(String s){
+        Map<String,String> map = new HashMap<>();
+        map.put("{","}");
+        map.put("[","]");
+        map.put("(",")");
+        return false;
     }
 
     /**
@@ -233,7 +267,7 @@ public class LeetCode_Easy {
     /**
      * 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。
      * 给定有序数组: [-10,-3,0,5,9],
-     *
+     *一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。
      * 一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：
      *
      *       0
@@ -245,6 +279,7 @@ public class LeetCode_Easy {
      */
     public static TreeNode exam_108(int[] nums){
         TreeNode treeNode = new TreeNode();
+
         return treeNode;
     }
 
@@ -252,8 +287,8 @@ public class LeetCode_Easy {
     /**
      * 假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。
      *
-     * 对每个孩子 i，都有一个胃口值 g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j] 。
-     * 如果 s[j] >= g[i]，我们可以将这个饼干 j 分配给孩子 i ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。
+     * 对每个孩子 i，都有一个胃口值g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j]。
+     * 如果 s[j]>= g[i]，我们可以将这个饼干 j 分配给孩子 i ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。
      *
      * @param g
      * @param s
@@ -308,6 +343,70 @@ public class LeetCode_Easy {
             }
         }
         return B;
+    }
+
+
+    /**
+     * 对于非负整数X而言，X的数组形式是每位数字按从左到右的顺序形成的数组。例如，如果X = 1231，那么其数组形式为[1,2,3,1]。
+     *
+     * 给定非负整数 X 的数组形式A，返回整数X+K的数组形式。
+     *
+     * 输入：A = [9,9,9,9,9,9,9,9,9,9], K = 1
+     * 输出：[1,0,0,0,0,0,0,0,0,0,0]
+     * 解释：9999999999 + 1 = 10000000000
+     *
+     */
+    public List<Integer> exam_989(int[] A, int K){
+        int KK = K;
+        int temp =0;
+        while (KK!=0){
+            KK=KK/10;
+            temp++;
+        }
+        int[] B = new int[temp];
+        for(int i=0;i<temp;i++){
+            B[temp-i-1]=K%10;
+            K=K/10;
+        }
+        List<Integer> list = new ArrayList<>();
+        int m = A.length;
+        int tt=0;
+        while (m!=0 || temp!=0){
+            if(temp!=0&&m!=0){
+                int b = A[--m]+B[--temp]+tt;
+                if(b>=10){
+                    b=b%10;
+                    tt=1;
+                }else {
+                    tt=0;
+                }
+                list.add(0,b);
+            }
+            if(temp!=0&&m==0){
+                int b=B[--temp]+tt;
+                if(b>=10){
+                    b=b%10;
+                    tt=1;
+                }else {
+                    tt=0;
+                }
+                list.add(0,b);
+            }
+            if(temp==0&&m!=0){
+                int b=A[--m]+tt;
+                if(b>=10){
+                    b=b%10;
+                    tt=1;
+                }else {
+                    tt=0;
+                }
+                list.add(0,b);
+            }
+        }
+        if(tt==1){
+            list.add(0,1);
+        }
+        return list;
     }
 
     /**

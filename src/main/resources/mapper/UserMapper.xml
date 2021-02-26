@@ -8,6 +8,8 @@
         <result property="email" jdbcType="VARCHAR" column="email"/>
         <result property="role" jdbcType="VARCHAR" column="role"/>
         <result property="permission" jdbcType="VARCHAR" column="permission"/>
+        <result property="sex" jdbcType="VARCHAR" column="sex"/>
+        <result property="telePhone" jdbcType="VARCHAR" column="tele_phone"/>
         <result property="createDate" jdbcType="TIMESTAMP" column="create_date"/>
         <result property="updateDate" jdbcType="TIMESTAMP" column="update_date"/>
     </resultMap>

@@ -1,5 +1,6 @@
 package com.dirge.config;
 
+import com.dirge.constants.ResponseMessage;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -71,19 +72,14 @@ public class ResultData {
     }
 
     public static ResultData ok() {
-        return new ResultData(true, "200", "操作成功");
+        return new ResultData(true, "200", ResponseMessage.SUCCESS);
     }
 
     public static ResultData ok(Object data) {
-        return new ResultData(true, "200", "操作成功", data);
-    }
-
-    public static ResultData error() {
-        return new ResultData(false, "500", "操作失败", null);
+        return new ResultData(true, "200", ResponseMessage.SUCCESS, data);
     }
 
     public static ResultData error(String errorMsg) {
-        return new ResultData(false, null, errorMsg);
+        return new ResultData(false, "500", errorMsg, null);
     }
-
 }

@@ -25,7 +25,6 @@ public class JWTUtil {
         Date date = new Date(nowMillis);
         Date expireDate = new Date(nowMillis+EXPIRE_TIME);
         Map<String,Object> map = new HashMap<>();
-        //map.put("")
         String token = JWT.create()
                 .withClaim("name",user.getUserName())//payload
                 .withClaim("password",user.getPassWord())
@@ -38,11 +37,9 @@ public class JWTUtil {
     /**
      * 解密token
      * @param token
-     * @param userName
-     * @param secret
      * @return
      */
-    public static Map<String, Claim> verify(String token, String userName, String secret){
+    public static boolean verify(String token){
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
         DecodedJWT jwt = null;
         try {
@@ -50,7 +47,7 @@ public class JWTUtil {
         } catch (Exception e) {
             throw new RuntimeException("登录凭证已过去，请重新登录！！！");
         }
-        return jwt.getClaims();
+        return true;
     }
 
 }

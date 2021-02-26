@@ -1,9 +1,10 @@
 package com.dirge.entity;
 
-import org.springframework.context.annotation.ImportResource;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Email;
+import java.util.Date;
 
 
 //加载自定义配置文件，如果字段名一样默认会加载application.properties
@@ -12,20 +13,26 @@ public class User {
     //@Value("${u.id}")
     @Id
     private String id;
-    //@Value("${u.name}")
+
     private String userName;
 
+    @Length(min = 6, max = 19, message = "密码长度是6-18位")
     private String passWord;
 
+    @Email(message = "邮箱格式错误！！！")
     private String email;
 
-    private String role = "common";
+    private String sex;
+
+    private String telePhone;
+
+    private String role;
 
     private String permission;
 
-    private LocalDateTime createDate;
+    private Date createDate;
 
-    private LocalDateTime updateDate;
+    private Date updateDate;
 
     public String getId() {
         return id;
@@ -75,20 +82,36 @@ public class User {
         this.email = email;
     }
 
-    public LocalDateTime getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public LocalDateTime getUpdateDate() {
+    public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(LocalDateTime updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getTelePhone() {
+        return telePhone;
+    }
+
+    public void setTelePhone(String telePhone) {
+        this.telePhone = telePhone;
     }
 
     @Override
