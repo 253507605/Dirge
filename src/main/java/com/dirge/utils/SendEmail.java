@@ -1,9 +1,12 @@
 package com.dirge.utils;
 
+import com.dirge.entity.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+
+import java.util.Date;
 
 
 @Configuration
@@ -15,18 +18,16 @@ public class SendEmail {
 
     /**
      *
-     * @param sender        发送者
-     * @param receiver      接收者
-     * @param title         邮件标题
-     * @param content       邮件内容
+     * @param email
      * @return
      */
-    public boolean sendSimpleMail(String sender,String receiver,String title,String content){
+    public boolean sendSimpleMail(Email email){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom(sender);
-        mailMessage.setTo(receiver);
-        mailMessage.setSubject(title);
-        mailMessage.setText(content);
+        mailMessage.setFrom(email.getSender());
+        mailMessage.setTo(email.getReceiver());
+        mailMessage.setSubject(email.getTitle());
+        mailMessage.setText(email.getContent());
+        mailMessage.setSentDate(email.getSendDate());
         javaMailSender.send(mailMessage);
         return true;
     }

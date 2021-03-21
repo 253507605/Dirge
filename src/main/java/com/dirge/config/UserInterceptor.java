@@ -1,6 +1,7 @@
 package com.dirge.config;
 
 import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.dirge.utils.JWTUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +21,15 @@ public class UserInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
         String token = request.getHeader("Authorization");
-        boolean map = JWTUtil.verify(token);
-        if(map){
+        if(token == null){
+            logger.info("用户未登录");
             return false;
         }
+        DecodedJWT jwt = JWTUtil.verify(token);
+        if(jwt.getClaims()==null){
+            return false;
+        }
+        request.setAttribute("username",jwt.getClaims().get("name").asString());
         return true;
     }
 }

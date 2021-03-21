@@ -1,7 +1,5 @@
 package com.dirge.utils;
 
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,19 +20,5 @@ public class ExceptionHandler {
         System.out.println("未知异常！！原因是：");
         e.printStackTrace();
         return e.getMessage();
-    }
-
-    //认证失败异常处理
-    @org.springframework.web.bind.annotation.ExceptionHandler(UnknownAccountException.class)
-    public String handleException1(UnknownAccountException e){
-        //logger.debug(e.getMessage());
-        return "用户名账号或密码错误！！！";
-    }
-
-    //拦截未授权页面
-    @org.springframework.web.bind.annotation.ExceptionHandler(UnauthorizedException .class)
-    public String handleException(UnauthorizedException  e) {
-        logger.debug(e.getMessage());
-        return "账号没有被授权";
     }
 }
